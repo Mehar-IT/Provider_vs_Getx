@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class Increment extends ChangeNotifier {
-  int _increment = 0;
-  int get increment => _increment;
+class Increment extends GetxController {
+  RxInt _increment = 0.obs;
+  RxInt get increment => _increment;
 
   void add() {
     _increment++;
-    notifyListeners();
   }
 }

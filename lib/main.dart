@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'model/increment.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
 }
 
 class ProviderData extends StatelessWidget {
+  final Increment increment = Get.put(Increment());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,27 +28,22 @@ class ProviderData extends StatelessWidget {
         body: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ChangeNotifierProvider<Increment>(
-              create: (context) => Increment(),
-              builder: (context, _) => Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Consumer<Increment>(
-                    builder: (context, object, _) => Text(
-                      'Press Button to Increment ${object.increment}',
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Obx(() => Text(
+                      'Press Button to Increment ${increment.increment}',
                       textScaleFactor: 2.0,
-                    ),
-                  ),
-                  MaterialButton(
-                    color: Colors.blue,
-                    onPressed: () {
-                      Provider.of<Increment>(context, listen: false).add();
-                    },
-                    child: Text('Increment'),
-                  )
-                ],
-              ),
-            )
+                    )),
+                MaterialButton(
+                  color: Colors.blue,
+                  onPressed: () {
+                    increment.add();
+                  },
+                  child: Text('Increment'),
+                )
+              ],
+            ),
           ],
         ));
   }

@@ -24,7 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  provider: ^5.0.0
+  getx_triple: ^0.0.4
 
 dev_dependencies:
   flutter_test:
