@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'model/increment.dart';
+import 'controller/increment.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -18,7 +18,8 @@ class MyApp extends StatelessWidget {
 }
 
 class ProviderData extends StatelessWidget {
-  final Increment increment = Get.put(Increment());
+  final IncrementController incrementController =
+      Get.put(IncrementController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,13 +33,13 @@ class ProviderData extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Obx(() => Text(
-                      'Press Button to Increment ${increment.increment}',
+                      'Press Button to Increment ${incrementController.increment}',
                       textScaleFactor: 2.0,
                     )),
                 MaterialButton(
                   color: Colors.blue,
                   onPressed: () {
-                    increment.add();
+                    incrementController.add();
                   },
                   child: Text('Increment'),
                 )
